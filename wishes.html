@@ -280,25 +280,29 @@
         return;
       }
 
-      sendBtn.disabled = true;
-      sendBtn.textContent = 'กำลังส่ง…';
+      // Apps Script takes a few seconds, so thank the guest right away and
+      // save in the background; bring the form back only if saving fails
       setStatus('');
+      form.hidden = true;
+      thanks.hidden = false;
 
       try {
-        // text/plain body keeps this a "simple" request, so Apps Script needs no CORS preflight
+        // text/plain body keeps this a "simple" request, so Apps Script needs no CORS preflight;
+        // keepalive lets the request finish even if the guest leaves the page
         const res = await fetch(WISHES_ENDPOINT, {
           method: 'POST',
+          keepalive: true,
           body: JSON.stringify({ name, message, website: hpEl.value })
         });
         const data = await res.json();
         if (!data.ok) throw new Error(data.error || 'failed');
-        form.hidden = true;
-        thanks.hidden = false;
       } catch (err) {
-        setStatus('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง', true);
-      } finally {
-        sendBtn.textContent = 'ส่งคำอวยพร';
+        nameEl.value = name;
+        msgEl.value = message;
         refresh();
+        thanks.hidden = true;
+        form.hidden = false;
+        setStatus('ส่งไม่สำเร็จ กรุณากดส่งอีกครั้ง', true);
       }
     });
 

@@ -350,37 +350,64 @@
       if (sendBtn.disabled) return;
 
       const attending = picked('attending');
-      sendBtn.disabled = true;
-      sendBtn.textContent = 'กำลังส่ง…';
+      const answers = {
+        fullName: fullNameEl.value.trim(),
+        nickname: nickEl.value.trim(),
+        relationChoice: picked('relation'),
+        relationOther: otherEl.value,
+        attending,
+        guests: attending === 'yes' ? picked('guests') : '',
+        message: msgEl.value.trim()
+      };
+
+      // Apps Script takes a few seconds, so thank the guest right away and
+      // save in the background; bring the form back only if saving fails
       setStatus('');
+      form.hidden = true;
+      (attending === 'yes' ? thanksYes : thanksNo).hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       try {
-        // text/plain body keeps this a "simple" request, so Apps Script needs no CORS preflight
+        // text/plain body keeps this a "simple" request, so Apps Script needs no CORS preflight;
+        // keepalive lets the request finish even if the guest leaves the page
         const res = await fetch(RSVP_ENDPOINT, {
           method: 'POST',
+          keepalive: true,
           body: JSON.stringify({
             type: 'rsvp',
-            fullName: fullNameEl.value.trim(),
-            nickname: nickEl.value.trim(),
+            fullName: answers.fullName,
+            nickname: answers.nickname,
             relation: relationValue(),
             attending,
-            guests: attending === 'yes' ? picked('guests') : '',
-            message: msgEl.value.trim(),
+            guests: answers.guests,
+            message: answers.message,
             website: hpEl.value
           })
         });
         const data = await res.json();
         if (!data.ok) throw new Error(data.error || 'failed');
-        form.hidden = true;
-        (attending === 'yes' ? thanksYes : thanksNo).hidden = false;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (err) {
-        setStatus('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง', true);
-      } finally {
-        sendBtn.textContent = 'ส่งแบบตอบรับ';
-        refresh();
+        restore(answers);
+        thanksYes.hidden = true;
+        thanksNo.hidden = true;
+        form.hidden = false;
+        setStatus('ส่งไม่สำเร็จ กรุณากดส่งอีกครั้ง', true);
+        sendBtn.scrollIntoView({ block: 'center', behavior: 'smooth' });
       }
     });
+
+    // Put the guest's answers back after a failed send (they may have reset the form meanwhile)
+    function restore(a) {
+      fullNameEl.value = a.fullName;
+      nickEl.value = a.nickname;
+      otherEl.value = a.relationOther;
+      msgEl.value = a.message;
+      for (const [name, value] of [['relation', a.relationChoice], ['attending', a.attending], ['guests', a.guests]]) {
+        const input = form.querySelector(`input[name="${name}"][value="${value}"]`);
+        if (input) input.checked = true;
+      }
+      refresh();
+    }
 
     document.querySelectorAll('[data-again]').forEach(btn => btn.addEventListener('click', () => {
       form.reset();
