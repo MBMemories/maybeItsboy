@@ -171,6 +171,16 @@
       transition: 0.4s ease;
       backdrop-filter: blur(10px);
     }
+    .open-btn .open-hint {
+      display:block;
+      margin-top:6px;
+      font-family: var(--sans);
+      font-size:11px;
+      font-weight:300;
+      letter-spacing:.05em;
+      text-transform:none;
+      color: rgba(255,255,255,.55);
+    }
     .open-btn:hover {
       background: rgba(201,169,110,.15);
       border-color: rgba(201,169,110,.8);
@@ -782,7 +792,7 @@
       <h1 class="overlay-title">Wedding Invitation</h1>
       <div class="overlay-names">May & Boy</div>
       <div class="overlay-date">23 · October · 2027</div>
-      <button class="open-btn" onclick="openInvitation()">Open Invitation</button>
+      <button class="open-btn" onclick="openInvitation()">Open Invitation<span class="open-hint">(คลิกเพื่อเปิด)</span></button>
     </div>
   </div>
 
@@ -820,53 +830,62 @@
 
           <!-- CALENDAR SVG -->
           <div style="margin-top:20px; display:flex; justify-content:center;">
-            <svg width="160" height="145" viewBox="0 0 160 145" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 6px 18px rgba(90,50,40,.13));">
-              <rect x="1" y="12" width="158" height="132" rx="14" fill="white" stroke="#E8D5CC" stroke-width="1.2"/>
+            <svg width="160" height="175" viewBox="0 0 160 175" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 6px 18px rgba(90,50,40,.13));">
+              <rect x="1" y="12" width="158" height="162" rx="14" fill="white" stroke="#E8D5CC" stroke-width="1.2"/>
               <rect x="1" y="12" width="158" height="36" rx="14" fill="#C8857A"/>
               <rect x="1" y="34" width="158" height="14" fill="#C8857A"/>
               <text x="80" y="35" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="white" letter-spacing="2">October 2027</text>
               <rect x="34" y="5" width="6" height="16" rx="3" fill="#A06058"/>
               <rect x="120" y="5" width="6" height="16" rx="3" fill="#A06058"/>
               <!-- Day headers -->
-              <text x="14"  y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">S</text>
-              <text x="37"  y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">M</text>
-              <text x="60"  y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">T</text>
-              <text x="80"  y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">W</text>
-              <text x="100" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">T</text>
-              <text x="123" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">F</text>
-              <text x="146" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">S</text>
+              <text x="17" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">S</text>
+              <text x="38" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">M</text>
+              <text x="59" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">T</text>
+              <text x="80" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">W</text>
+              <text x="101" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">T</text>
+              <text x="122" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">F</text>
+              <text x="143" y="68" font-family="sans-serif" font-size="9.5" fill="#C9A96E" text-anchor="middle">S</text>
               <line x1="8" y1="73" x2="152" y2="73" stroke="#F0E4DE" stroke-width=".8"/>
               <!-- Week 1 -->
-              <text x="100" y="87" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">1</text>
-              <text x="123" y="87" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">2</text>
-              <text x="146" y="87" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">3</text>
+              <text x="122" y="87" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">1</text>
+              <text x="143" y="87" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">2</text>
               <!-- Week 2 -->
-              <text x="14"  y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">4</text>
-              <text x="37"  y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">5</text>
-              <text x="60"  y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">6</text>
-              <text x="80"  y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">7</text>
-              <text x="100" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">8</text>
-              <text x="123" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">9</text>
-              <text x="146" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">10</text>
+              <text x="17" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">3</text>
+              <text x="38" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">4</text>
+              <text x="59" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">5</text>
+              <text x="80" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">6</text>
+              <text x="101" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">7</text>
+              <text x="122" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">8</text>
+              <text x="143" y="101" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">9</text>
               <!-- Week 3 -->
-              <text x="14"  y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">11</text>
-              <text x="37"  y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">12</text>
-              <text x="60"  y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">13</text>
-              <text x="80"  y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">14</text>
-              <text x="100" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">15</text>
-              <text x="123" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">16</text>
-              <text x="146" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">17</text>
+              <text x="17" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">10</text>
+              <text x="38" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">11</text>
+              <text x="59" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">12</text>
+              <text x="80" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">13</text>
+              <text x="101" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">14</text>
+              <text x="122" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">15</text>
+              <text x="143" y="115" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">16</text>
               <!-- Week 4 -->
-              <text x="14"  y="130" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">18</text>
-              <text x="37"  y="130" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">19</text>
-              <text x="60"  y="130" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">20</text>
-              <text x="80"  y="130" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">21</text>
-              <text x="100" y="130" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">22</text>
-              <!-- 23 = Friday, col F = x:123 -->
-              <circle cx="123" cy="127" r="11" fill="rgba(200,49,42,.12)"/>
-              <circle cx="123" cy="127" r="11" fill="none" stroke="#C8312A" stroke-width="2"/>
-              <text x="123" y="131" font-family="sans-serif" font-size="10" fill="#C8312A" font-weight="700" text-anchor="middle">23</text>
-              <text x="146" y="130" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">24</text>
+              <text x="17" y="129" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">17</text>
+              <text x="38" y="129" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">18</text>
+              <text x="59" y="129" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">19</text>
+              <text x="80" y="129" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">20</text>
+              <text x="101" y="129" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">21</text>
+              <text x="122" y="129" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">22</text>
+              <!-- 23 = Saturday, col S = x:143 -->
+              <circle cx="143" cy="125.5" r="9" fill="rgba(200,49,42,.12)"/>
+              <circle cx="143" cy="125.5" r="9" fill="none" stroke="#C8312A" stroke-width="2"/>
+              <text x="143" y="130" font-family="sans-serif" font-size="10" fill="#C8312A" font-weight="700" text-anchor="middle">23</text>
+              <!-- Week 5 -->
+              <text x="17" y="143" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">24</text>
+              <text x="38" y="143" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">25</text>
+              <text x="59" y="143" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">26</text>
+              <text x="80" y="143" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">27</text>
+              <text x="101" y="143" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">28</text>
+              <text x="122" y="143" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">29</text>
+              <text x="143" y="143" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">30</text>
+              <!-- Week 6 -->
+              <text x="17" y="157" font-family="sans-serif" font-size="10" fill="#7A6860" text-anchor="middle">31</text>
             </svg>
           </div>
 
@@ -944,7 +963,7 @@
             <div class="tl-card">
               <div class="tl-tag">พิธีสมรส</div>
               <div class="tl-time">10:29</div>
-              <div class="tl-desc">พิธีหลังน้ำพระพุทธมนต์</div>
+              <div class="tl-desc">พิธีหลั่งน้ำพระพุทธมนต์</div>
               <div class="tl-desc">Sacred Water Blessing Ceremony<br>ฤกษ์มงคล พิธีรดน้ำสังข์</div>
             </div>
           </div>
@@ -1010,7 +1029,9 @@
         <div class="rsvp-card" data-aos="fade-up">
           <p class="kicker">RSVP</p>
           <div style="font-family:var(--display);font-style:italic;font-size:17px;color:var(--muted);">แบบตอบรับเข้าร่วมงาน</div>
-          <p style="font-size:13px;color:var(--muted);margin:10px 0 0;">กรุณาตอบรับภายใน 1 ตุลาคม 2027</p>
+          <p style="font-size:13px;color:var(--muted);margin:10px 0 0;line-height:1.7;">เพื่อให้เราสามารถวางแผนในการดูแลท่าน ซึ่งเป็นแขกคนสำคัญได้อย่างเต็มที่ ขอรบกวนทุกท่านทำแบบตอบรับการเข้าร่วมงานให้เราด้วยนะคะ/ครับ</p>
+          <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">(กรุณาตอบรับภายใน 1 ตุลาคม 2027)</p>
+          <p style="font-family:var(--display);font-style:italic;font-size:16px;color:var(--rose);margin:12px 0 0;">Hope to see you at our wedding</p>
           <a href="https://forms.gle/KNB37nS9eDWTXC8i8" target="_blank">
             <img src="images/ggicon.png" alt="Google Form" class="rsvp-icon">
           </a>
@@ -1019,10 +1040,18 @@
         </div>
 
         <div class="rsvp-card" data-aos="fade-up" data-aos-delay="100">
-          <p class="kicker">Gift</p>
-          <div style="font-family:var(--display);font-style:italic;font-size:17px;color:var(--muted);">ยินดีรับของขวัญผ่าน QR</div>
-          <p style="font-size:13px;color:var(--muted);margin:10px 0 0;">ขอบคุณจากใจ 🤍</p>
-          <img src="images/qrcode.jpg" alt="QR Code" class="qr-img">
+          <p class="kicker">Wishes</p>
+          <p style="font-size:13px;color:var(--muted);margin:0 0 6px;">สำหรับท่านที่ไม่สะดวกมาร่วมงาน</p>
+          <div style="font-family:var(--display);font-style:italic;font-size:17px;color:var(--muted);">ส่งความรักและคำอวยพรให้เรา</div>
+          <p style="font-size:13px;color:var(--muted);margin:10px 0 0;line-height:1.7;">ทุกความยินดีของท่านมีความหมายกับเราเสมอ 🤍</p>
+          <a href="wishes.html" aria-label="ส่งคำอวยพร">
+            <svg class="rsvp-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="10" y="22" width="60" height="42" rx="6" fill="#FBF0EE" stroke="#C8857A" stroke-width="2"/>
+              <path d="M12 25 L40 46 L68 25" fill="none" stroke="#C8857A" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M40 40 C40 40 30 33 30 27.5 C30 24 33 22 35.5 22 C37.5 22 39 23.2 40 25 C41 23.2 42.5 22 44.5 22 C47 22 50 24 50 27.5 C50 33 40 40 40 40 Z" fill="#C8857A" transform="translate(0 -12)"/>
+            </svg>
+          </a>
+          <a class="btn primary" href="wishes.html">ส่งคำอวยพร</a>
         </div>
       </div>
     </section>
@@ -1085,10 +1114,12 @@
       const mainWrap = document.getElementById('mainWrap');
       mainWrap.classList.add('visible');
       setTimeout(() => AOS.refresh(), 600);
+      // The tap on "Open Invitation" lets the browser allow audio playback
+      if (audio.paused) playMusic();
     }
 
     // Countdown
-    const weddingDate = new Date(2027, 9, 23, 8, 39, 0).getTime();
+    const weddingDate = new Date(2027, 9, 23, 7, 19, 0).getTime();
     function updateTimer() {
       const now = Date.now();
       const diff = weddingDate - now;
@@ -1147,20 +1178,24 @@
     audio.addEventListener('pause', () => setPlaying(false));
     audio.addEventListener('ended', () => setPlaying(false));
 
+    function playMusic() {
+      audio.volume = 0;
+      audio.play().then(() => {
+        let v = 0;
+        const fade = setInterval(() => {
+          v = Math.min(v + 0.04, 0.6);
+          audio.volume = v;
+          if (v >= 0.6) clearInterval(fade);
+        }, 80);
+      }).catch(() => {
+        label.textContent = '⚠ กดอีกครั้งเพื่อเล่น';
+        showLabel();
+      });
+    }
+
     function toggleMusic() {
       if (audio.paused) {
-        audio.volume = 0;
-        audio.play().then(() => {
-          let v = 0;
-          const fade = setInterval(() => {
-            v = Math.min(v + 0.04, 0.6);
-            audio.volume = v;
-            if (v >= 0.6) clearInterval(fade);
-          }, 80);
-        }).catch(() => {
-          label.textContent = '⚠ กดอีกครั้งเพื่อเล่น';
-          showLabel();
-        });
+        playMusic();
       } else {
         let v = audio.volume;
         const fade = setInterval(() => {
