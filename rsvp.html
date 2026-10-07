@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>May & Boy — RSVP</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="May & Boy — แบบตอบรับเข้าร่วมงาน" />
+  <meta property="og:description" content="เรียนเชิญร่วมงานฉลองมงคลสมรส 23 October 2027" />
+  <meta property="og:image" content="https://mbmemories.github.io/maybeItsboy/images/og-share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="800" />
+  <meta property="og:url" content="https://mbmemories.github.io/maybeItsboy/rsvp.html" />
+  <meta property="og:locale" content="th_TH" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#FDFAF7;
+      --ink:#2A1F1A;
+      --muted:#7A6860;
+      --line:rgba(180,140,120,.15);
+      --rose:#C8857A;
+      --rose-light:#F2D4CF;
+      --rose-pale:#FBF0EE;
+      --gold:#C9A96E;
+      --gold-light:#F5EDD8;
+      --cream:#FAF6F0;
+      --shadow: 0 24px 64px rgba(90,50,40,.10);
+      --serif: "Cormorant Garamond", serif;
+      --display: "Playfair Display", serif;
+      --sans: "Anuphan", sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html,body{min-height:100%;}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background: linear-gradient(180deg, #EBCBC2 0%, #DDB2A6 55%, #D4A699 100%) fixed;
+      background-color:#DDB2A6;
+      overflow-x:hidden;
+    }
+
+    /* Floating flowers */
+    #bgRoses{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    #bgRoses .rose{
+      position:absolute; user-select:none;
+      font-size:var(--sz,24px); opacity:0;
+      animation: roseDrift var(--dur,12s) ease-in-out var(--delay,0s) infinite;
+    }
+    @keyframes roseDrift {
+      0%   { transform: translateY(0)     rotate(0deg)   scale(1);    opacity: 0; }
+      8%   { opacity: var(--op, .5); }
+      40%  { transform: translateY(-28px) rotate(14deg)  scale(1.06); }
+      60%  { transform: translateY(-16px) rotate(-9deg)  scale(.96);  }
+      92%  { opacity: var(--op, .5); }
+      100% { transform: translateY(0)     rotate(0deg)   scale(1);    opacity: 0; }
+    }
+
+    .page{
+      position:relative; z-index:1;
+      max-width:440px; margin:0 auto;
+      padding:20px 16px 48px;
+    }
+
+    .back{
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:13px; color:#fff; text-decoration:none;
+      padding:8px 16px; border-radius:50px;
+      background:rgba(255,255,255,.22);
+      border:1px solid rgba(255,255,255,.45);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Header */
+    .head{ text-align:center; margin:48px 0 26px; color:#fff; }
+    .monogram{
+      width:104px; height:104px; margin:0 auto 16px;
+      border-radius:50%;
+      background:var(--rose-light);
+      border:3px solid #fff;
+      box-shadow:0 10px 30px rgba(90,50,40,.18);
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--serif); font-size:34px; color:#A9776D;
+    }
+    .names{
+      font-family:var(--display); font-weight:500;
+      font-size:30px; margin:0;
+      text-shadow:0 2px 12px rgba(90,50,40,.18);
+    }
+    .sub{ font-size:14px; margin:8px 0 0; opacity:.95; }
+
+    /* Cards */
+    .card{
+      background:rgba(255,255,255,.94);
+      border-radius:22px;
+      padding:24px 20px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+    .kicker{
+      font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--gold); margin:0 0 14px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .kicker::after{
+      content:''; flex:1; height:1px;
+      background:linear-gradient(90deg, rgba(201,169,110,.4), transparent);
+    }
+    .intro{ font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 18px; }
+
+    label, .q{ display:block; font-size:13px; font-weight:600; margin:0 0 6px; }
+    .req{ color:#C8312A; font-weight:500; }
+    .opt{ color:#A89890; font-weight:400; }
+    .field{ margin-bottom:18px; }
+    input[type=text], textarea{
+      width:100%;
+      font:inherit; font-size:16px; color:var(--ink);
+      background:#fff;
+      border:1px solid #E5D3CC; border-radius:12px;
+      padding:12px 14px;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    textarea{ min-height:110px; resize:vertical; line-height:1.6; }
+    input[type=text]:focus, textarea:focus{
+      outline:none; border-color:var(--rose);
+      box-shadow:0 0 0 3px rgba(200,133,122,.18);
+    }
+    ::placeholder{ color:#BBADA7; }
+    .hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+    /* Choice chips (radio buttons) */
+    .choices{ display:grid; gap:8px; }
+    .choices.two{ grid-template-columns:1fr 1fr; }
+    .choices.three{ grid-template-columns:repeat(3, 1fr); }
+    .choices.four{ grid-template-columns:repeat(4, 1fr); }
+    .choice input{ position:absolute; opacity:0; pointer-events:none; }
+    .choice span{
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      min-height:46px; padding:10px 12px;
+      font-size:14px; line-height:1.4; color:var(--ink);
+      background:#fff;
+      border:1px solid #E5D3CC; border-radius:12px;
+      cursor:pointer;
+      transition:background .2s, border-color .2s, color .2s;
+    }
+    .choice input:checked + span{
+      background:var(--rose-pale);
+      border-color:var(--rose);
+      color:#A0574D; font-weight:600;
+    }
+    .choice input:focus-visible + span{ box-shadow:0 0 0 3px rgba(200,133,122,.25); }
+    .other{ margin-top:8px; }
+    .hint{ font-size:11px; color:#A89890; margin:6px 0 0; }
+
+    .btn{
+      width:100%;
+      border:0; cursor:pointer;
+      font:inherit; font-size:15px; font-weight:500; letter-spacing:.04em;
+      padding:14px 20px; border-radius:14px;
+      color:#fff;
+      background:linear-gradient(135deg, var(--rose), #B07068);
+      box-shadow:0 8px 20px rgba(200,133,122,.3);
+      transition:transform .2s, box-shadow .2s, opacity .2s;
+    }
+    .btn:hover:not(:disabled){ transform:translateY(-1px); box-shadow:0 12px 28px rgba(200,133,122,.4); }
+    .btn:disabled{ opacity:.45; cursor:not-allowed; box-shadow:none; }
+
+    .status{ font-size:13px; text-align:center; margin:12px 0 0; min-height:1em; color:var(--muted); }
+    .status.error{ color:#B3413A; }
+
+    .thanks{ text-align:center; padding:10px 0 4px; }
+    .thanks .heart{ font-size:40px; }
+    .thanks h2{ font-family:var(--display); font-style:italic; font-weight:400; font-size:24px; margin:8px 0 6px; }
+    .thanks p{ font-size:14px; color:var(--muted); margin:0 0 16px; line-height:1.7; }
+    .thanks .btn{ display:block; text-decoration:none; margin-bottom:12px; }
+    .link-btn{
+      background:none; border:0; font:inherit; font-size:13px;
+      color:var(--rose); text-decoration:underline; cursor:pointer;
+    }
+
+    .foot{
+      text-align:center; color:#fff;
+      font-family:var(--serif); font-style:italic; font-size:16px;
+      margin-top:26px; opacity:.95;
+    }
+
+    [hidden]{ display:none !important; }
+  </style>
+</head>
+
+<body>
+
+  <div id="bgRoses">
+    <div class="rose" style="top:4%;left:6%;--sz:34px;--dur:11s;--delay:0s;--op:.55;">🌸</div>
+    <div class="rose" style="top:9%;right:8%;--sz:30px;--dur:13s;--delay:1.5s;--op:.5;">🌹</div>
+    <div class="rose" style="top:26%;left:2%;--sz:24px;--dur:12s;--delay:3s;--op:.45;">🌷</div>
+    <div class="rose" style="top:34%;right:3%;--sz:26px;--dur:14s;--delay:.8s;--op:.45;">🌸</div>
+    <div class="rose" style="top:58%;left:3%;--sz:28px;--dur:12.5s;--delay:2.2s;--op:.4;">🌹</div>
+    <div class="rose" style="top:72%;right:5%;--sz:24px;--dur:11.5s;--delay:4s;--op:.4;">🌷</div>
+    <div class="rose" style="top:88%;left:12%;--sz:22px;--dur:13.5s;--delay:1s;--op:.4;">🌸</div>
+    <div class="rose" style="top:92%;right:18%;--sz:26px;--dur:12s;--delay:3.4s;--op:.4;">🌹</div>
+  </div>
+
+  <main class="page">
+    <a class="back" href="index.html" id="backLink">← กลับไปหน้าการ์ด</a>
+
+    <header class="head">
+      <div class="monogram">M&amp;B</div>
+      <h1 class="names">May &amp; Boy</h1>
+      <p class="sub">แบบตอบรับเข้าร่วมงาน</p>
+    </header>
+
+    <section class="card">
+      <p class="kicker">RSVP</p>
+
+      <form id="rsvpForm" novalidate>
+        <p class="intro">
+          เพื่อให้เราสามารถวางแผนในการดูแลท่าน ซึ่งเป็นแขกคนสำคัญได้อย่างเต็มที่
+          ขอรบกวนทุกท่านทำแบบตอบรับการเข้าร่วมงานให้เราด้วยนะคะ/ครับ
+          (กรุณาตอบรับภายใน 1 ตุลาคม 2027)
+        </p>
+
+        <div class="field">
+          <label for="fullName">ชื่อ-นามสกุล <span class="req">*</span></label>
+          <input type="text" id="fullName" maxlength="120" placeholder="ชื่อ-นามสกุล" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="nickname">ชื่อเล่น <span class="opt">(ไม่บังคับ)</span></label>
+          <input type="text" id="nickname" maxlength="60" placeholder="ชื่อเล่น" autocomplete="nickname">
+        </div>
+
+        <div class="field">
+          <span class="q">ความสัมพันธ์ <span class="req">*</span></span>
+          <div class="choices three">
+            <label class="choice"><input type="radio" name="relation" value="ญาติฝั่ง May"><span>ญาติฝั่ง May</span></label>
+            <label class="choice"><input type="radio" name="relation" value="ญาติฝั่ง Boy"><span>ญาติฝั่ง Boy</span></label>
+            <label class="choice"><input type="radio" name="relation" value="other"><span>เพื่อน/อื่นๆ</span></label>
+          </div>
+          <div class="other" id="otherWrap" hidden>
+            <input type="text" id="relationOther" maxlength="120" placeholder="ระบุกลุ่มเพื่อน หรือความสัมพันธ์">
+            <p class="hint">เช่น เพื่อนเมย์มัธยม, เพื่อนบอยมัธยม, พี่ Henkel, พี่ CDG</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="q">การยืนยันการมาร่วมงาน <span class="req">*</span></span>
+          <div class="choices two">
+            <label class="choice"><input type="radio" name="attending" value="yes"><span>ยินดีไปร่วมงาน</span></label>
+            <label class="choice"><input type="radio" name="attending" value="no"><span>ไม่สะดวกมาร่วมงาน</span></label>
+          </div>
+        </div>
+
+        <div class="field" id="guestsWrap" hidden>
+          <span class="q">จำนวนผู้ติดตาม (รวมตัวแขก) <span class="req">*</span></span>
+          <div class="choices four">
+            <label class="choice"><input type="radio" name="guests" value="1"><span>1 ท่าน</span></label>
+            <label class="choice"><input type="radio" name="guests" value="2"><span>2 ท่าน</span></label>
+            <label class="choice"><input type="radio" name="guests" value="3"><span>3 ท่าน</span></label>
+            <label class="choice"><input type="radio" name="guests" value="4"><span>4 ท่าน</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">ข้อความถึงบ่าวสาว <span class="opt">(ไม่บังคับ)</span></label>
+          <textarea id="message" maxlength="1000" placeholder="ข้อความถึงบ่าวสาว…"></textarea>
+        </div>
+
+        <!-- Spam trap: hidden from people, bots tend to fill it -->
+        <div class="hp" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn" type="submit" id="sendBtn" disabled>ส่งแบบตอบรับ</button>
+        <p class="status" id="status" role="status"></p>
+      </form>
+
+      <div class="thanks" id="thanksYes" hidden>
+        <div class="heart">🤍</div>
+        <h2>Thank you</h2>
+        <p>ได้รับแบบตอบรับของท่านแล้ว<br>แล้วพบกันวันที่ 23 ตุลาคม 2027 ที่ Bok Rak นะคะ/ครับ</p>
+        <a class="btn" href="index.html">กลับไปหน้าการ์ด</a>
+        <button class="link-btn" type="button" data-again>ตอบรับให้อีกท่าน</button>
+      </div>
+
+      <div class="thanks" id="thanksNo" hidden>
+        <div class="heart">🤍</div>
+        <h2>Thank you</h2>
+        <p>ขอบคุณที่แจ้งให้เราทราบ<br>หากสะดวก ร่วมส่งความรักและคำอวยพรให้เราได้นะคะ/ครับ</p>
+        <a class="btn" href="wishes.html">ส่งคำอวยพร</a>
+        <button class="link-btn" type="button" data-again>ตอบรับให้อีกท่าน</button>
+      </div>
+    </section>
+
+    <p class="foot">23 October 2027 · Bok Rak, Nonthaburi</p>
+  </main>
+
+  <script>
+    // URL of the Google Apps Script web app that writes to the Google Sheet
+    // (see google-apps-script/wishes.gs for setup)
+    const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyTazEaKfffSGupk-UAFVJ4YrM18U3348SwTfVW2NUecrqGRI88fpblILrYGTNZwgeq/exec';
+
+    const form       = document.getElementById('rsvpForm');
+    const fullNameEl = document.getElementById('fullName');
+    const nickEl     = document.getElementById('nickname');
+    const otherEl    = document.getElementById('relationOther');
+    const otherWrap  = document.getElementById('otherWrap');
+    const guestsWrap = document.getElementById('guestsWrap');
+    const msgEl      = document.getElementById('message');
+    const hpEl       = document.getElementById('website');
+    const sendBtn    = document.getElementById('sendBtn');
+    const status     = document.getElementById('status');
+    const thanksYes  = document.getElementById('thanksYes');
+    const thanksNo   = document.getElementById('thanksNo');
+
+    const picked = (name) => (form.querySelector(`input[name="${name}"]:checked`) || {}).value || '';
+
+    function relationValue() {
+      const r = picked('relation');
+      return r === 'other' ? otherEl.value.trim() : r;
+    }
+
+    function refresh() {
+      otherWrap.hidden = picked('relation') !== 'other';
+      guestsWrap.hidden = picked('attending') !== 'yes';
+      const ok = fullNameEl.value.trim()
+        && relationValue()
+        && picked('attending')
+        && (picked('attending') === 'no' || picked('guests'));
+      sendBtn.disabled = !ok;
+    }
+    form.addEventListener('input', refresh);
+    form.addEventListener('change', refresh);
+
+    function setStatus(text, isError) {
+      status.textContent = text;
+      status.classList.toggle('error', !!isError);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (sendBtn.disabled) return;
+
+      const attending = picked('attending');
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'กำลังส่ง…';
+      setStatus('');
+
+      try {
+        // text/plain body keeps this a "simple" request, so Apps Script needs no CORS preflight
+        const res = await fetch(RSVP_ENDPOINT, {
+          method: 'POST',
+          body: JSON.stringify({
+            type: 'rsvp',
+            fullName: fullNameEl.value.trim(),
+            nickname: nickEl.value.trim(),
+            relation: relationValue(),
+            attending,
+            guests: attending === 'yes' ? picked('guests') : '',
+            message: msgEl.value.trim(),
+            website: hpEl.value
+          })
+        });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || 'failed');
+        form.hidden = true;
+        (attending === 'yes' ? thanksYes : thanksNo).hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        setStatus('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง', true);
+      } finally {
+        sendBtn.textContent = 'ส่งแบบตอบรับ';
+        refresh();
+      }
+    });
+
+    document.querySelectorAll('[data-again]').forEach(btn => btn.addEventListener('click', () => {
+      form.reset();
+      refresh();
+      setStatus('');
+      thanksYes.hidden = true;
+      thanksNo.hidden = true;
+      form.hidden = false;
+      fullNameEl.focus();
+    }));
+
+    // Go back to the card instead of reloading it, when we came from there
+    document.getElementById('backLink').addEventListener('click', (e) => {
+      if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) {
+        e.preventDefault();
+        history.back();
+      }
+    });
+  </script>
+
+</body>
+</html>
